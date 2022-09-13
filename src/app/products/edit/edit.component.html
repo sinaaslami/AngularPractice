@@ -1,0 +1,16 @@
+<!-- //edit -->
+<div class="container m-5" *ngIf="productInput">
+    <input type="text" class="my-5 form-control" [(ngModel)]="product2.title">
+    <textarea class="form-control" [(ngModel)]="product2.description" cols="30" rows="2"></textarea>
+    <button class=" my-2 btn btn-primary" (click)="save()">
+        Save
+    </button>
+</div>
+<!-- add -->
+<div class="container m-5" *ngIf="!productInput">
+    <input type="text" class="my-5 form-control" [(ngModel)]="title">
+    <textarea class="form-control" [(ngModel)]="description" cols="30" rows="2"></textarea>
+    <button class=" my-2 btn btn-primary" (click)="save()">
+        Save
+    </button>
+</div>

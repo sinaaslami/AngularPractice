@@ -1,0 +1,45 @@
+<button class="mx-1 btn btn-primary" (click)="add()">Add</button>
+<div class=" mx-auto row" id="productList">
+    <div class="card col-3 px-2 my-3" *ngFor="let item of array; let i = index" (click)="getIndex(i)"
+        [ngClass]="{'border border-danger': i ===  index}" id="product-{{i}}">
+
+        <img 
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsLgg2nWHYR-_HUIumWseBhVw06YfaMK6soc1IfA79&s"
+            class="card-img-top" alt="...">
+        <div class="card-body">
+            <h1>{{i+1}}</h1>
+            <h5 class="card-title">{{item.title}} </h5>
+            <p class="card-text">{{item.description}}</p>
+            <button type="button" (click)="getDetail(item)" class="mx-2 btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
+                See Details
+            </button>
+            <button type="button" class="btn btn-primary" (click)="getProduct(item)">
+                Edit </button>
+        </div>
+    </div>
+</div>
+<div *ngIf="product" id="editProduct">
+    <app-edit [productInput]="product" (saveChanges)="save($event)"></app-edit>
+</div>
+<div *ngIf="isAdd" id="addProduct">
+    <app-edit (saveChanges)="save($event)"></app-edit>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                The title of the product is {{title}} and the description is : {{description}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="goToDetail()">Go To
+                    Product</button>
+            </div>
+        </div>
+    </div>
+</div>
